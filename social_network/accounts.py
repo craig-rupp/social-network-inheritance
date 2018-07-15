@@ -8,10 +8,14 @@ class User(object):
         self.following = []
         
     def add_post(self, post):
-        pass
+        self.posts.append(post)
 
     def get_timeline(self):
-        pass
+        following_posts = []
+        for user in self.following:
+            for post in user.posts:
+                following_posts.append(post)
+        return sorted(following_posts, key=lambda x: x.timestamp, reverse=True)
 
     def follow(self, other):
         self.following.append(other)
